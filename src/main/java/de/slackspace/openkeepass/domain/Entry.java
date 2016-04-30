@@ -55,6 +55,9 @@ public class Entry implements KeePassFileElement {
     @XmlElement(name = "History")
     private History history;
 
+    @XmlElement(name = "Times")
+    private Times times;
+
     Entry() {
         this.uuid = UUID.randomUUID();
     }
@@ -65,6 +68,7 @@ public class Entry implements KeePassFileElement {
         this.iconData = entryContract.getIconData();
         this.iconId = entryContract.getIconId();
         this.customIconUUID = entryContract.getCustomIconUUID();
+        this.times = entryContract.getTimes();
 
         setValue(false, NOTES, entryContract.getNotes());
         setValue(true, PASSWORD, entryContract.getPassword());
@@ -141,6 +145,14 @@ public class Entry implements KeePassFileElement {
 
     public String getUsername() {
         return getValueFromProperty(USER_NAME);
+    }
+
+    public Times getTimes() {
+        return times;
+    }
+
+    public void setTimes(Times times) {
+        this.times = times;
     }
 
     public boolean isTitleProtected() {
